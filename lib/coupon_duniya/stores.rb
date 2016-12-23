@@ -10,21 +10,25 @@ module CouponDuniya
       querry = {}
 
       unless first_letter.nil?
-        querry_string = "?first_letter=#{first_letter}"
+        querry_string = "first_letter=#{first_letter}"
         querry = {
           first_letter: first_letter
         }
       end
       
       headers = HeadersConstructor.new(@credentials, querry_string).construct
-
-      HTTParty.get(end_point, headers: headers, querry: querry)
+      HTTParty.get(httparty_url(querry_string), headers: headers, querry: querry)
     end
 
     private
 
-    def end_point
-      "https://api.coupondunia.in/stores"
+    def httparty_url(querry_string)
+      url = "https://api.coupondunia.in/stores"
+      unless querry_string.empty?
+        url = "#{url}?#{querry_string}"
+      end
+
+      url
     end
   end
 end
