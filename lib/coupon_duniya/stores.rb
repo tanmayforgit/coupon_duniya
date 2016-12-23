@@ -1,30 +1,31 @@
 module CouponDuniya
-  class Stores
-    def initialize(credentials)
-      @credentials = credentials
-      @page_number = 0
+  class Store
+    attr_reader :id, :name, :logo_rectangle_url, :number_of_offeres
+    def initialize(id, name, logo_rectangle_url, logo_square_url, number_of_offeres)
+      @id = id
+      @name = name
+      @logo_rectangle_url = logo_rectangle_url
+      @number_of_offeres = number_of_offeres
     end
 
-    def all(first_letter = nil)
-      querry_string = ""
-      querry = {}
-
-      unless first_letter.nil?
-        querry_string = "?first_letter=#{first_letter}"
-        querry = {
-          first_letter: first_letter
-        }
-      end
-      
-      headers = HeadersConstructor.new(@credentials, querry_string).construct
-
-      HTTParty.get(end_point, headers: headers, querry: querry)
+    def self.all(credentials, first_letter = nil)
+      api_response = Api::Stores.new(credentials).all(first_letter)["stores"]
+      create_from_cd_api_response(api_response)
     end
+
 
     private
 
-    def end_point
-      "https://api.coupondunia.in/stores"
+    def self.create_from_cd_api_response(api_response)
+      api_response.each_with_object([]) do |store_object_as_hash, stores|
+        stores << new(
+            store_object_as_hash['store_id'],
+            store_object_as_hash['store_name'],
+            store_object_as_hash['logo_rectangle_url'],
+            store_object_as_hash['logo_square_url'],
+            store_object_as_hash['num_offers']
+          )
+      end
     end
   end
 end
