@@ -1,8 +1,6 @@
 # CouponDuniya
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/coupon_duniya`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+CouponDuniya is an unofficial wrapper for accessing api provided by coupon dunia for integrating with them.
 
 ## Installation
 
@@ -14,7 +12,7 @@ gem 'coupon_duniya'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -22,11 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Coupon dunia gives partner id and api key once you have initiated an account with them. Create
+a credentials object
+cred = CouponDuniya::Credentials.new(part_id, api_key)
+
+Use this to deal with stores
+stores = CouponDuniya::Stores.all(cred, first_letter = nil)
+
+first_letter parameter is not compulsory. If passed it will give all parameters starting with that
+first letter
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run rake console for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
