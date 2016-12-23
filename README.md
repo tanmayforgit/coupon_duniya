@@ -16,16 +16,20 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install coupon_duniya
+    $ gem install coupon_duniya, git: 'git@github.com:tanmayforgit/coupon_duniya.git'
 
 ## Usage
 
 Coupon dunia gives partner id and api key once you have initiated an account with them. Create
 a credentials object
+```ruby
 cred = CouponDuniya::Credentials.new(part_id, api_key)
+```
 
 Use this to deal with stores
+```ruby
 stores = CouponDuniya::Stores.all(cred, first_letter = nil)
+```
 
 first_letter parameter is not compulsory. If passed it will give all parameters starting with that
 first letter
