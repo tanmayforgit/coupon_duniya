@@ -1,8 +1,7 @@
 module CouponDuniya
   module Api
     class Stores
-      def initialize(credentials)
-        @credentials = credentials
+      def initialize
         @page_number = 0
       end
 
@@ -17,7 +16,7 @@ module CouponDuniya
           }
         end
         
-        headers = HeadersConstructor.new(@credentials, querry_string).construct
+        headers = HeadersConstructor.new(querry_string).construct
         HTTParty.get(httparty_url(querry_string), headers: headers, querry: querry)
       end
 
