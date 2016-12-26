@@ -20,15 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-Coupon dunia gives partner id and api key once you have initiated an account with them. Create
-a credentials object
+Coupon dunia gives partner id and api key once you have initiated an account with them. Before 
+using anything you should configure your partner_id, api_key
 ```ruby
-cred = CouponDuniya::Credentials.new(part_id, api_key)
+CouponDuniya.configure |c|
+  c.partner_id = 'your partner id'
+  c.api_key = 'your api key'
+end
 ```
-
-Use this to deal with stores
+After configuration, you can use coupon duniya as per your need
 ```ruby
-stores = CouponDuniya::Stores.all(cred, first_letter = nil)
+e.g.
+stores = CouponDuniya::Stores.all(first_letter = nil)
 ```
 
 first_letter parameter is not compulsory. If passed it will give all parameters starting with that

@@ -3,8 +3,7 @@ module CouponDuniya
   module Api
     class HeadersConstructor
       include CouponDuniya::Api::CopDunServerTimestampCalculator
-      def initialize(credentials, querry_string)
-        @credentials = credentials
+      def initialize(querry_string)
         @querry_string = querry_string
         @hitting_timestamp = coupon_duniya_server_timestamp
       end
@@ -20,11 +19,11 @@ module CouponDuniya
       private
 
       def api_key
-        @credentials.api_key
+        CouponDuniya.configuration.api_key
       end
 
       def partner_id
-        @credentials.partner_id
+        CouponDuniya.configuration.partner_id
       end
 
       def base64_encode_checksum
