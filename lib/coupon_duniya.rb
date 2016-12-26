@@ -12,7 +12,7 @@ module CouponDuniya
     yield(configuration)
   end
 
-  class CouponDuniyaNotConfiguredError < StandardError
+  class NotConfiguredError < StandardError
     
   end
 end
