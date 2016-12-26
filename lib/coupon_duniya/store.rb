@@ -11,7 +11,7 @@ module CouponDuniya
     def self.all(first_letter = nil)
       raise CouponDuniya::NotConfiguredError unless CouponDuniya::configuration.valid?
 
-      api_response = Api::Stores.new.all(first_letter)["stores"]
+      api_response = Api::Stores.new.all(first_letter)
       create_from_cd_api_response(api_response)
     end
 

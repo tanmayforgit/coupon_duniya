@@ -8,7 +8,7 @@ module CouponDuniya
       def all
         querry_string = ""
         headers = HeadersConstructor.new(querry_string).construct
-        HTTParty.get(httparty_url, headers: headers)
+        HTTParty.get(httparty_url, headers: headers)["categories"]
       end
 
       private

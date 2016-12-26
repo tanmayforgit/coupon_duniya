@@ -17,7 +17,7 @@ module CouponDuniya
         end
         
         headers = HeadersConstructor.new(querry_string).construct
-        HTTParty.get(httparty_url(querry_string), headers: headers, querry: querry)
+        HTTParty.get(httparty_url(querry_string), headers: headers, querry: querry)["stores"]
       end
 
       private

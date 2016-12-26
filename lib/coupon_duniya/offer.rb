@@ -25,7 +25,7 @@ module CouponDuniya
    def self.best_twenty
       raise CouponDuniya::NotConfiguredError unless CouponDuniya::configuration.valid?
 
-      api_response = Api::Offers.new.best_twenty["offers"]
+      api_response = Api::Offers.new.best_twenty
       create_from_cd_api_response(api_response)
     end
 
