@@ -11,7 +11,7 @@ module CouponDuniya
 
         httparty_url = "https://api.coupondunia.in/best-offers"
         headers = HeadersConstructor.new(querry_string).construct
-        HTTParty.get(httparty_url, headers: headers, querry: querry)
+        HTTParty.get(httparty_url, headers: headers, querry: querry)["offers"]
       end
     end
   end
