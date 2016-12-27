@@ -17,13 +17,29 @@ module CouponDuniya
         end
         
         headers = HeadersConstructor.new(querry_string).construct
-        HTTParty.get(httparty_url(querry_string), headers: headers, querry: querry)["stores"]
+        url = "https://api.coupondunia.in/stores"
+        HTTParty.get(httparty_url(url,querry_string), headers: headers, querry: querry)["stores"]
+      end
+
+      def offers(store_id,first_letter = nil)
+        querry_string = ""
+        querry = {}
+
+        unless first_letter.nil?
+          querry_string = "first_letter=#{first_letter}"
+          querry = {
+            first_letter: first_letter
+          }
+        end
+
+        headers = HeadersConstructor.new(querry_string).construct
+        url = "https://api.coupondunia.in/stores/#{store_id}/offers"
+        HTTParty.get(httparty_url(url,querry_string), headers: headers, querry: querry)["offers"]
       end
 
       private
 
-      def httparty_url(querry_string)
-        url = "https://api.coupondunia.in/stores"
+      def httparty_url(url,querry_string)       
         unless querry_string.empty?
           url = "#{url}?#{querry_string}"
         end
