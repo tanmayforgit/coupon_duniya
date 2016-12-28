@@ -1,4 +1,11 @@
 require "coupon_duniya/version"
+require "coupon_duniya/offer"
+require "coupon_duniya/api/offers"
+require "coupon_duniya/category"
+require "coupon_duniya/api/categories"
+require "coupon_duniya/configuration"
+require "coupon_duniya/api/headers_constructor"
+ 
 Dir[File.expand_path "lib/**/*.rb"].each{|f| require_relative(f)}
 
 module CouponDuniya

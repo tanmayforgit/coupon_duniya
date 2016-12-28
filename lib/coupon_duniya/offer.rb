@@ -29,8 +29,6 @@ module CouponDuniya
       create_from_cd_api_response(api_response)
     end
 
-    private
-
     def self.create_from_cd_api_response(api_response)
       api_response.each_with_object([]) do |offer_object_as_hash, offfers|
         store_object_as_hash = offer_object_as_hash['store']
